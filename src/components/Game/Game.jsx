@@ -1,4 +1,7 @@
-import React from 'react';
+import { useState } from 'react';
+import Guess from '../Guess/Guess';
+import PrevGuesses from '../PrevGuesses/PrevGuesses';
+import GuessGrid from '../GuessGrid/GuessGrid';
 
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
@@ -9,7 +12,19 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  return <>Put a game here!</>;
+  const [guesses, setGuesses] = useState([]);
+
+  function handleGuesses(guess) {
+    setGuesses([...guesses, guess]);
+  }
+
+  return (
+    <>
+      <PrevGuesses guesses={guesses}/>
+      <GuessGrid/>
+      <Guess handleGuesses={handleGuesses}/>
+    </>
+  );
 }
 
 export default Game;

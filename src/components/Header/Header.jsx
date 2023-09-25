@@ -1,9 +1,7 @@
-import React from 'react';
-
 function Header() {
   return (
     <header>
-      <h1>Word Game</h1>
+      <h1>Word[le] Game</h1>
     </header>
   );
 }
