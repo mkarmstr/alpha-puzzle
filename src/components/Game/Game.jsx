@@ -15,8 +15,7 @@ console.info({ answer });
 function Game() {
   const [guesses, setGuesses] = useState([]);
   const [numGuesses, setNumGuesses] = useState(0);
-  const [hasWon, setHasWon] = useState(false);
-  const isDisabled = hasWon || numGuesses === 6;
+  const [gameOver, setGameOver] = useState(false);
 
   function checkResult(result) {
     for (let char of result) {
@@ -24,32 +23,33 @@ function Game() {
         return;
       }
     }
-    setHasWon(true);
-    setNumGuesses(0);
+    setGameOver(true);
+    console.log('congrats');
   }
 
   function handleGuesses(guess) {
     const result = checkGuess(guess, answer);
     checkResult(result);
     setGuesses([...guesses, { guess, result }]);
-    setNumGuesses(numGuesses + 1);
-    console.log(guesses);
+    const newNum = numGuesses + 1;
+    setNumGuesses(newNum);
+    if (newNum === 6) setGameOver(true);
   }
 
   return (
     <>
-      {/* <PrevGuesses/> */}
-      {hasWon && (
-        <Banners type={'happy'} answer={answer} numGuesses={numGuesses} />
-      )}
-      {numGuesses === 6 && !hasWon && (
-        <Banners type={'sad'} answer={answer} numGuesses={numGuesses} />
-      )}
+      {gameOver ? (
+        numGuesses === 6 ? (
+          <Banners type={'sad'} answer={answer} numGuesses={numGuesses} />
+        ) : (
+          <Banners type={'happy'} answer={answer} numGuesses={numGuesses} />
+        )
+      ) : null}
       <GuessGrid guesses={guesses} />
       <Guess
         handleGuesses={handleGuesses}
         answer={answer}
-        isDisabled={isDisabled}
+        gameOver={gameOver}
       />
     </>
   );
