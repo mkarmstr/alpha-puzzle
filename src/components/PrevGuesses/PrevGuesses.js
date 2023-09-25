@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 function PrevGuesses({ guesses }) {
   return (
     <div className="guess-results">
-     {guesses.map((guess)=>{return <p key={Math.random()}>{guess}</p>})}
+     {/* {guesses.map((guess)=>{return <p key={Math.random()}>{guess}</p>})} */}
     </div>
   )
 }

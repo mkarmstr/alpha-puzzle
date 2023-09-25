@@ -21,7 +21,7 @@ function Game() {
   return (
     <>
       <PrevGuesses guesses={guesses}/>
-      <GuessGrid/>
+      <GuessGrid guesses={guesses}/>
       <Guess handleGuesses={handleGuesses}/>
     </>
   );
