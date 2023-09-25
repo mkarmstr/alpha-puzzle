@@ -1,16 +1,16 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-function PrevGuesses({ guesses }) {
+function PrevGuesses() {
   return (
     <div className="guess-results">
-     {/* {guesses.map((guess)=>{return <p key={Math.random()}>{guess}</p>})} */}
+      {/* {guesses.map((guess)=>{return <p key={Math.random()}>{guess}</p>})} */}
     </div>
   )
 }
 
-PrevGuesses.propTypes = {
-  guesses: PropTypes.array.isRequired,
-};
+// PrevGuesses.propTypes = {
+//   // guesses: PropTypes.array.isRequired,
+// };
 
 export default PrevGuesses;
 

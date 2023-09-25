@@ -10,7 +10,7 @@ export function checkGuess(guess, answer) {
   
     const guessChars = guess.toUpperCase().split('');
     const answerChars = answer.split('');
-  
+
     const result = [];
   
     // Step 1: Look for correct letters.
