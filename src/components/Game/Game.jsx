@@ -6,13 +6,24 @@ import Banners from '../Banners/Banners';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 
-const answer = sample(WORDS);
-console.info({ answer });
-
 function Game() {
   const [guesses, setGuesses] = useState([]);
   const [numGuesses, setNumGuesses] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [answer, setAnswer] = useState(() => {
+    const newAnswer = sample(WORDS);
+    console.log(newAnswer);
+    return newAnswer;
+  });
+
+  function resetGame() {
+    setGuesses([]);
+    setNumGuesses(0);
+    setGameOver(false);
+    const newAnswer = sample(WORDS);
+    console.log(newAnswer);
+    setAnswer(newAnswer);
+  }
 
   function checkResult(result) {
     for (let char of result) {
@@ -21,7 +32,6 @@ function Game() {
       }
     }
     setGameOver(true);
-    console.log('congrats');
   }
 
   function handleGuesses(guess) {
@@ -37,9 +47,9 @@ function Game() {
     <>
       {gameOver ? (
         numGuesses === 6 ? (
-          <Banners type={'sad'} answer={answer} numGuesses={numGuesses} />
+          <Banners type={'sad'} answer={answer} numGuesses={numGuesses} resetGame={resetGame} />
         ) : (
-          <Banners type={'happy'} answer={answer} numGuesses={numGuesses} />
+          <Banners type={'happy'} answer={answer} numGuesses={numGuesses} resetGame={resetGame} />
         )
       ) : null}
       <GuessGrid guesses={guesses} />

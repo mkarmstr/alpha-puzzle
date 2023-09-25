@@ -7,7 +7,6 @@ function Guess({ handleGuesses, gameOver }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(guess);
     handleGuesses(guess);
     setGuess('');
   }
